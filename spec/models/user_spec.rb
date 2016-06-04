@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe User do
-  before { @user = FactoryGirl.create(:user) }
+  before { @user = FactoryGirl.build(:user) }
   
   subject { @user }
   
@@ -15,8 +15,6 @@ describe User do
   it { should validate_uniqueness_of(:email).case_insensitive }
   it { should validate_confirmation_of(:password) }
   it { should allow_value("example@domian.com").for(:email) }
-  
-  
   
   
 end
