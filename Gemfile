@@ -22,7 +22,8 @@ gem 'thin', '1.6.4'
 gem 'active_model_serializers', '0.10.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
+#Use devise for user authentication
+gem 'devise','4.1.1'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

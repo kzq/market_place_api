@@ -1,5 +1,6 @@
 require 'api_constraints'
 Rails.application.routes.draw do
+  devise_for :users
   #api.market_place_api.dev
   #using namespace directory remains the part of the url but with constrainst now its 
   #a subdomin
