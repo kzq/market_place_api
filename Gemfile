@@ -30,6 +30,9 @@ gem 'active_model_serializers', '0.10.0'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+ gem 'rspec-rails', '3.4.2'
+ gem 'factory_girl_rails','4.7.0'
+ gem 'ffaker', '2.2.0'
 end
 
 group :development do

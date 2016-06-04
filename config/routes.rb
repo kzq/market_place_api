@@ -1,3 +1,4 @@
+require 'api_constraints'
 Rails.application.routes.draw do
   #api.market_place_api.dev
   #using namespace directory remains the part of the url but with constrainst now its 
@@ -5,8 +6,8 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json}, constraints: { subdomain: 'api', path: '/'} do
     #api.market_place_api.dev/products
     #using module directory skipped in path of resorce=s under directory
-    scope module: :v1 do
-      
+    scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
+        
     end
   end
 end
