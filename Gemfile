@@ -30,6 +30,7 @@ gem 'devise','4.1.1'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+
 group :development, :test do
  gem 'rspec-rails', '3.4.2'
  gem 'factory_girl_rails','4.7.0'
