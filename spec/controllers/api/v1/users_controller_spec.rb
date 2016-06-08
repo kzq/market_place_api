@@ -1,13 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::UsersController, type: :controller do
-  before(:each){ request.headers['Accept'] = "application/vnd.marketplace.v1"}
   
   describe "GET #show" do
     before(:each) do
       @user = FactoryGirl.create(:user)
       sign_in @user
-      get :show, id: @user.id, format: :json 
+      get :show, id: @user.id 
     end
     
     it "should return the user details of the sender" do
@@ -27,7 +26,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     context "When user is created successfully" do
       before(:each) do
         @user_valid_attributes = FactoryGirl.attributes_for(:user)
-        post :create, { user: @user_valid_attributes }, format: :json
+        post :create, { user: @user_valid_attributes }
       end
       
       it "Creates new user and sends back user details in json" do
@@ -41,7 +40,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     context "When user is not created" do
       before(:each) do
         @user_invalid_attributes = { password: "12345678", password_confirmation: "12345678" }
-        post :create, {user: @user_invalid_attributes}, format: :json
+        post :create, {user: @user_invalid_attributes}
       end  
       
       it "renders an error json" do
@@ -65,7 +64,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     end
     context "When user details are updated successfully" do
       before(:each) do
-        patch :update, { id: @user.id, user: { email:"mynewemail@yahoo.com" } }, format: :json
+        patch :update, { id: @user.id, user: { email:"mynewemail@yahoo.com" } }
       end
       
       it "renders the json with updated user details" do
@@ -78,7 +77,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     
     context "When details are not updated" do
       before(:each) do
-        patch :update, { id: @user.id, user: { email:"mynewemail.com" } }, format: :json
+        patch :update, { id: @user.id, user: { email:"mynewemail.com" } }
       end  
       
       it "renders an error json" do
@@ -98,7 +97,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
   describe "DELETE #destroy" do
     before(:each) do
       @user = FactoryGirl.create :user
-      delete :destroy, { id: @user.id }, format: :json
+      delete :destroy, { id: @user.id }
     end
 
     it { should respond_with 204 }
