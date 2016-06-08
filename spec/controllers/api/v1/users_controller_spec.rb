@@ -1,5 +1,5 @@
 require 'rails_helper'
-include Devise::TestHelpers
+
 RSpec.describe Api::V1::UsersController, type: :controller do
   before(:each){ request.headers['Accept'] = "application/vnd.marketplace.v1"}
   
@@ -11,7 +11,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     end
     
     it "should return the user details of the sender" do
-      user_response = JSON.parse(response.body, symbolize_names: true)
+      user_response = json_response
       expect(user_response[:email]).to eql @user.email
     end
     
@@ -31,7 +31,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       end
       
       it "Creates new user and sends back user details in json" do
-        user_response = JSON.parse(response.body, symbolize_names: true) 
+        user_response = json_response 
         expect(user_response[:email]).to eql(@user_valid_attributes[:email])
       end
     
@@ -45,12 +45,12 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       end  
       
       it "renders an error json" do
-        user_response = JSON.parse(response.body,symbolize_names: true)
+        user_response = json_response
         expect(user_response).to have_key(:errors)
       end
       
       it "renders the json error on why user could not be created" do
-        user_response = JSON.parse(response.body,symbolize_names: true)
+        user_response = json_response
         expect(user_response[:errors][:email]).to include("can't be blank")  
       end 
       
@@ -69,7 +69,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       end
       
       it "renders the json with updated user details" do
-        user_response = JSON.parse(response.body, symbolize_names: true) 
+        user_response = json_response 
         expect(user_response[:email]).to eql("mynewemail@yahoo.com")
       end
     
@@ -82,12 +82,12 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       end  
       
       it "renders an error json" do
-        user_response = JSON.parse(response.body,symbolize_names: true)
+        user_response = json_response
         expect(user_response).to have_key(:errors)
       end
       
       it "renders the json error on why user could not be created" do
-        user_response = JSON.parse(response.body,symbolize_names: true)
+        user_response = json_response
         expect(user_response[:errors][:email]).to include("is invalid")  
       end 
       
