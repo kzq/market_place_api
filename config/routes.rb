@@ -8,7 +8,8 @@ Rails.application.routes.draw do
     #api.market_place_api.dev/products
     #using module directory skipped in path of resorce=s under directory
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
-      resources :users, :only => [:show, :create, :update, :destroy]    
+      resources :users, :only => [:show, :create, :update, :destroy]  
+      resources :sessions, :only => [:create]   
     end
   end
 end
